@@ -1,6 +1,6 @@
 job("kube")
 {
-description ("my first kube job")
+ description ("my first kube job")
 scm {
 github ('vaishnavi1401/devops-site-try','master')
 }
