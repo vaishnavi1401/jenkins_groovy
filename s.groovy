@@ -57,22 +57,6 @@ triggers {
 }
 job("kube3")
 {
-description ("my fourth kube job")
-steps{
-shell(''' status=$(curl -o /dev/null -sw "%{http_code}" http://192.168.99.105:30001/index.html)
-if [[$status == 200 ]]
-then
-echo "running"
-else
-curl -u admin:1234 http://192.168.99.106:8080/job/kub4/build?token=mail
-fi ''')
-}
-triggers {
-        upstream('kube2', 'SUCCESS')
-    }
-}
-job("kube4")
-{
 description ("my fifth kube job")
  authenticationToken('mail')
 
@@ -80,6 +64,6 @@ description ("my fifth kube job")
         mailer('vaishnaviaggarwal1401@gmail..com', true, true)
     }
 triggers {
-        upstream('kube3', 'SUCCESS')
+        upstream('kube2', 'SUCCESS')
     }
 }
